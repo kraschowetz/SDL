@@ -93,7 +93,7 @@ void Game::start()
                   << SDL_GetError();
         stop();
     }
-
+    
     run();
 }
 
@@ -113,8 +113,7 @@ void Game::stop()
     running = false;
 }
 
-void Game::run()
-{
+void Game::run(){
     // delta time setup
     Timer deltaTimer;
     deltaTimer.start();
@@ -123,7 +122,6 @@ void Game::run()
     while (running)
     {
         pollEvents();
-
         update(deltaTime);
 
         // convert delta
@@ -139,12 +137,11 @@ void Game::run()
     stop();
 }
 
-void Game::pollEvents()
-{
+void Game::pollEvents(){
     SDL_Event ev;
     SDL_PollEvent(&ev);
 
-    e.pollEvents(ev);
+    player.pollEvents(ev);
 
     switch (ev.type)
     {
@@ -154,43 +151,28 @@ void Game::pollEvents()
     }
 }
 
-void Game::update(float delta)
-{
-    e.update(delta);
+void Game::update(float delta){
+    player.update(delta);
+
+    for(Entity e : entities){
+        e.update(delta);
+    }
 }
 
-void Game::render()
-{
+void Game::render(){
     // clear window
     SDL_RenderClear(renderer);
 
-    e.render(renderer);
+    player.render(renderer);
 
-    // import font from file
-    static TTF_Font *font = TTF_OpenFont(
-        "assets/fonts/FiraCode.ttf", 12);
-    // create color from rgba
-    static SDL_Color c_white = {
-        255, 255, 255, 255};
-    // create SDL_Surface from fps string
-    SDL_Surface *textSurface = TTF_RenderText_Blended(
-        font, std::string("fps " + 
-        std::to_string(1.f / deltaTime)).c_str(), c_white);
-    // create a string from surface
-    SDL_Texture *text_t = SDL_CreateTextureFromSurface(
-        renderer, textSurface);
-    // get surface bounds
-    SDL_Rect textBounds = {
-        5, 5, textSurface->w, textSurface->h};
-    // copy texture to render target(Renderer*)
-    SDL_RenderCopy(renderer, text_t, nullptr, &textBounds);
+    for (Entity e : entities){
+        e.render(renderer);
+    }
 
-    //reset the color to black
+    fpsCounter.render(renderer, deltaTime);
+
+    // reset the color to black
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    // free the surface
-    SDL_FreeSurface(textSurface);
-    // destroy texture
-    SDL_DestroyTexture(text_t);
 
     // update screen
     SDL_RenderPresent(renderer);

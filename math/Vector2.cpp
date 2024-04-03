@@ -11,6 +11,9 @@ Vector2::Vector2(float x, float y){
 
 Vector2 Vector2::normalized(){
     float len = lenght();
+    if(len == 0){
+        return Vector2(0.f, 0.f);
+    }
     return (Vector2(x/len, y/len));
 }
 

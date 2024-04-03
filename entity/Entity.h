@@ -7,8 +7,10 @@ class Entity {
 
     //variables
     protected:
+        float rotation;
         Vector2 position;
         Vector2 size;
+        Vector2 velocity;
         SDL_Rect rect;
     // functions
     public:

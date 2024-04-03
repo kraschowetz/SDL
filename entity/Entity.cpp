@@ -3,6 +3,7 @@
 //Entity.cpp is currently used for debug    
 
 Entity::Entity(){
+    position = Vector2(0.f, 0.f);
     rect.x = position.x;
     rect.y = position.y;
     rect.w = 32.f;

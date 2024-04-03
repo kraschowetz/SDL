@@ -1,8 +1,10 @@
 #pragma once
 
 #include <SDL2/SDL.h>
+#include <vector>
 #include "../entity/Entity.h"
 #include "../entity/Player.h"
+#include "../ui/FpsCounter.h"
 
 class Game {   
     //varibles
@@ -11,7 +13,9 @@ class Game {
         SDL_Renderer *renderer;
         bool running = true;
         float deltaTime;
-        Player e;
+        std::vector<Entity> entities;
+        Player player;
+        FpsCounter fpsCounter;
     //functions
     public:
         void start();
