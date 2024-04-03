@@ -17,7 +17,6 @@ class Player : public Entity{
     //variables
     private:
         float speed = 320; 
-        std::vector<int> inputStorage;
         Vector2 dir;
         InputHandler *inputHandler;
 };
