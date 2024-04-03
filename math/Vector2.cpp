@@ -36,6 +36,12 @@ Vector2 Vector2::operator*=(const Vector2 &p){
     return *this;
 }
 
+Vector2 Vector2::operator*=(const float f){
+    x *= f;
+    y *= f;
+    return *this;
+}
+
 Vector2 Vector2::operator-=(const Vector2 &p){
     x -= p.x;
     y -= p.y;
@@ -59,6 +65,13 @@ Vector2 Vector2::operator*(const Vector2 &p){
     Vector2 v = Vector2(this->x, this->y);
     v.x *= p.x;
     v.y *= p.y;
+    return v;
+}
+
+Vector2 Vector2::operator*(const float f){
+    Vector2 v = Vector2(this->x, this->y);
+    v.x *= f;
+    v.y *= f;
     return v;
 }
 

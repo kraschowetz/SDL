@@ -21,4 +21,7 @@ struct Vector2 {
         Vector2 operator*(const Vector2 &p);
         Vector2 operator-(const Vector2 &p);
         Vector2 operator/(const Vector2 &p);
+
+        Vector2 operator*=(const float f);
+        Vector2 operator*(const float f);
 };

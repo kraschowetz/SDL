@@ -6,14 +6,16 @@
 class Entity {
 
     //variables
-    private:
+    protected:
         Vector2 position;
         Vector2 size;
         SDL_Rect rect;
     // functions
     public:
         Entity();
-    // getters & setters
+        void update(float delta);
+        void render(SDL_Renderer* r);
+        // getters & setters
     public:
         Vector2 getPosition();
         SDL_Rect& getRect();

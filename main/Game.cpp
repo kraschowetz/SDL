@@ -144,6 +144,8 @@ void Game::pollEvents()
     SDL_Event ev;
     SDL_PollEvent(&ev);
 
+    e.pollEvents(ev);
+
     switch (ev.type)
     {
     case SDL_QUIT:
@@ -154,13 +156,15 @@ void Game::pollEvents()
 
 void Game::update(float delta)
 {
-    // game logic goes here
+    e.update(delta);
 }
 
 void Game::render()
 {
     // clear window
     SDL_RenderClear(renderer);
+
+    e.render(renderer);
 
     // import font from file
     static TTF_Font *font = TTF_OpenFont(
