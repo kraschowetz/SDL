@@ -15,8 +15,7 @@ void Player::pollEvents(SDL_Event ev){
                     /*check if pressed event is present
                        in input storage             */
                     bool canInsert = true;
-                    for(int i = 0; i < inputStorage.size(); i++)
-                    {
+                    for(int i = 0; i < inputStorage.size(); i++){
                         if (inputStorage.at(i) 
                             == ev.key.keysym.sym){
                                 canInsert = false;
@@ -42,8 +41,7 @@ void Player::pollEvents(SDL_Event ev){
 
                 /*check if pressed event is present
                        in input storage             */
-                for (int i = 0; i < inputStorage.size(); i++)
-                {
+                for (int i = 0; i < inputStorage.size(); i++){
                     if (inputStorage.at(i) == ev.key.keysym.sym)
                     {   
                         //if event exists in storage: remove
