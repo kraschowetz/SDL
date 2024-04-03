@@ -7,8 +7,7 @@
 #include "Timer.h"
 #include "../entity/Entity.h"
 
-void Game::start()
-{
+void Game::start(){
     std::cout << "starting game \n"; // DEBUG
     running = true;
 
@@ -94,11 +93,12 @@ void Game::start()
         stop();
     }
     
+    initObjects();
+
     run();
 }
 
-void Game::stop()
-{
+void Game::stop(){
     // destroy Window & Renderer components
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
@@ -137,11 +137,15 @@ void Game::run(){
     stop();
 }
 
+void Game::initObjects(){
+    player.setInputHandler(&inputHandler);
+}
+
 void Game::pollEvents(){
     SDL_Event ev;
     SDL_PollEvent(&ev);
 
-    player.pollEvents(ev);
+    inputHandler.pollEvents(ev);
 
     switch (ev.type)
     {
@@ -152,11 +156,14 @@ void Game::pollEvents(){
 }
 
 void Game::update(float delta){
+
     player.update(delta);
 
     for(Entity e : entities){
         e.update(delta);
     }
+
+    inputHandler.update();
 }
 
 void Game::render(){

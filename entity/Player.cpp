@@ -2,56 +2,8 @@
 
 #include <iostream>
 
-void Player::pollEvents(SDL_Event ev){
-    switch (ev.type){
-        //get key down
-        case SDL_KEYDOWN:
-            switch (ev.key.keysym.sym){
-                case SDLK_d:    /////////////////////
-                case SDLK_a:    //      case       //    
-                case SDLK_s:    //  input events:  //   
-                case SDLK_w:    /////////////////////
-
-                    /*check if pressed event is present
-                       in input storage             */
-                    bool canInsert = true;
-                    for(int i = 0; i < inputStorage.size(); i++){
-                        if (inputStorage.at(i) 
-                            == ev.key.keysym.sym){
-                                canInsert = false;
-                            }
-                    }
-                    //if event is nor present: insert event
-                    if(canInsert){
-                        inputStorage.push_back(
-                            ev.key.keysym.sym
-                        );
-                    }
-                    break;
-                    
-            }
-        break;
-        //get key up
-        case SDL_KEYUP:
-            switch (ev.key.keysym.sym){
-            case SDLK_d:    /////////////////////
-            case SDLK_a:    //      case       //
-            case SDLK_s:    //  input events:  //
-            case SDLK_w:    /////////////////////
-
-                /*check if pressed event is present
-                       in input storage             */
-                for (int i = 0; i < inputStorage.size(); i++){
-                    if (inputStorage.at(i) == ev.key.keysym.sym)
-                    {   
-                        //if event exists in storage: remove
-                        inputStorage.erase(
-                            inputStorage.begin() + i);
-                    }
-                }
-            }
-            break;
-    }
+void Player::setInputHandler(InputHandler* in){
+    this->inputHandler = in;
 }
 
 void Player::update(float delta){
@@ -78,6 +30,19 @@ void Player::move(){
         convert data in inputStorage to direction Vector2
     */
     dir = Vector2(0.f, 0.f);
+    if(inputHandler->getKeyPressed(SDLK_d)){
+        dir.x += 1;
+    }
+    if(inputHandler->getKeyPressed(SDLK_a)){
+        dir.x += -1;
+    }
+    if(inputHandler->getKeyPressed(SDLK_s)){
+        dir.y += 1;
+    }
+    if(inputHandler->getKeyPressed(SDLK_w)){
+        dir.y += -1;
+    }
+    /*
     for(int i = 0; i < inputStorage.size(); i++){
         if(inputStorage.at(i) == SDLK_d){
             dir.x += 1;
@@ -92,4 +57,5 @@ void Player::move(){
             dir.y += -1;
         }
     }
+    */
 }

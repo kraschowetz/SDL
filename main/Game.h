@@ -2,6 +2,7 @@
 
 #include <SDL2/SDL.h>
 #include <vector>
+#include "InputHandler.h"
 #include "../entity/Entity.h"
 #include "../entity/Player.h"
 #include "../ui/FpsCounter.h"
@@ -16,6 +17,8 @@ class Game {
         std::vector<Entity> entities;
         Player player;
         FpsCounter fpsCounter;
+    public:
+        InputHandler inputHandler;
     //functions
     public:
         void start();
@@ -25,5 +28,6 @@ class Game {
         void pollEvents();
         void update(float delta);
         void render();
+        void initObjects();
 
 };
