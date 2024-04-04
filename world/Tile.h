@@ -7,7 +7,7 @@
     a tile is the visual representation of a map piece;
 */
 
-class Tile{
+struct Tile{
     //variables
     private:
         Vector2 position;

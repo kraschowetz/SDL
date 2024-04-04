@@ -7,7 +7,7 @@
     a chunk is a 16x16 grid that holds its maps pieces
 */
 
-class Chunk{
+struct Chunk{
     //variables
     std::vector<Tile> tiles;
     //methods
