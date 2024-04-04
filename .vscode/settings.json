@@ -103,5 +103,13 @@
     "streambuf": "cpp",
     "cinttypes": "cpp",
     "typeinfo": "cpp"
-  }
+  },
+  "makefile.launchConfigurations": [
+    {
+      "cwd": "c:\\Users\\joaok\\c++\\SDL",
+      "binaryPath": "c:\\Users\\joaok\\c++\\SDL\\main",
+      "binaryArgs": []
+    }
+  ],
+  "makefile.makefilePath": "Makefile"
 }

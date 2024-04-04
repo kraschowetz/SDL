@@ -1,7 +1,5 @@
 #include "Collider.h"
 
-#include <iostream>
-
 //default constructor
 Collider::Collider(){
     this->shape.x = 0;
@@ -89,24 +87,22 @@ bool Collider::isColliding(Collider *other){
     */
     if(r && !this->isStatic && !this->isTrigger){
         Vector2 force = (
-            centerPosition - other->getCenter()
+                centerPosition - other->getCenter()
             );
         parent->applyForce(force.normalized() * 16.f);
     }
     return r;
 }
 
-/*
-    render method is used only for debugging
-    it draws the collider in a transparent blue shade
-    it draws the bounds of the collider
-    it draws the center point of the collider in red
-*/
+//render method is used only for debugging
 void Collider::render(SDL_Renderer* r){
+    // draws the collider in a transparent blue shade
     SDL_SetRenderDrawColor(r, 123, 128, 255, 128);
     SDL_RenderFillRect(r, &shape);
-    SDL_SetRenderDrawColor(r, 123, 128, 255, 255);
+    // draws the bounds of the collider
+    SDL_SetRenderDrawColor(r, 64, 64, 255, 255);
     SDL_RenderDrawRect(r, &shape);
+    // draws the center point of the collider in red
     SDL_SetRenderDrawColor(r, 255, 0, 0, 255);
     SDL_RenderDrawPoint(r, centerPosition.x, centerPosition.y);
 }

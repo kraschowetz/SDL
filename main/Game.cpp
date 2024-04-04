@@ -158,7 +158,7 @@ void Game::pollEvents(){
 }
 
 void Game::update(float delta){
-
+    
     player.update(delta);
 
     for(Entity e : entities){

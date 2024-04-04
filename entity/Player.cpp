@@ -38,14 +38,15 @@ void Player::render(SDL_Renderer *r){
 }
 
 void Player::move(){
-    /*
-        read inputStorage;
-        convert data in inputStorage to direction Vector2
-    */
+    //detect collision
     dir = Vector2(0.f, 0.f);
     if(collider.isColliding(other)){
         return;
     }
+    /*
+        read inputStorage;
+        convert data in inputStorage to direction Vector2
+    */
     if(inputHandler->getKeyPressed(SDLK_d)){
         dir.x += 1;
     }
@@ -58,20 +59,4 @@ void Player::move(){
     if(inputHandler->getKeyPressed(SDLK_w)){
         dir.y += -1;
     }
-    /*
-    for(int i = 0; i < inputStorage.size(); i++){
-        if(inputStorage.at(i) == SDLK_d){
-            dir.x += 1;
-        }
-        if (inputStorage.at(i) == SDLK_a){
-            dir.x += -1;
-        }
-        if (inputStorage.at(i) == SDLK_s){
-            dir.y += 1;
-        }
-        if (inputStorage.at(i) == SDLK_w){
-            dir.y += -1;
-        }
-    }
-    */
 }
