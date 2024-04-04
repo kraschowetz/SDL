@@ -2,6 +2,15 @@
 
 #include <iostream>
 
+Player::Player(){
+    Collider c = Collider(
+        position,
+        Vector2(32.f, 32.f),
+        this
+    );
+    collider = c;
+}
+
 void Player::setInputHandler(InputHandler* in){
     this->inputHandler = in;
 }
@@ -10,18 +19,22 @@ void Player::update(float delta){
     move();
     
     //set velocity
-    velocity = dir.normalized() * speed * delta;
+    velocity = (dir.normalized() * speed * delta);
+    velocity += externalForce * delta;
     //apply velocity
     position += velocity;
 
     //apply velocity in drawable rect
     rect.x = position.x;
     rect.y = position.y;
+    collider.updatePosition(position);
+    externalForce = Vector2(0.f, 0.f);
 }
 
 void Player::render(SDL_Renderer *r){
     SDL_SetRenderDrawColor(r, 255, 255, 255, 255);
     SDL_RenderDrawRect(r, &rect);
+    collider.render(r);
 }
 
 void Player::move(){
@@ -30,6 +43,9 @@ void Player::move(){
         convert data in inputStorage to direction Vector2
     */
     dir = Vector2(0.f, 0.f);
+    if(collider.isColliding(other)){
+        return;
+    }
     if(inputHandler->getKeyPressed(SDLK_d)){
         dir.x += 1;
     }

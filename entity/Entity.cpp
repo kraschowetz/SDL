@@ -18,6 +18,10 @@ void Entity::render(SDL_Renderer* r){
     
 }
 
+void Entity::applyForce(Vector2 force){
+    externalForce += force;
+}
+
 Vector2 Entity::getPosition(){
     return position;
 }

@@ -6,6 +6,7 @@
 #include "../entity/Entity.h"
 #include "../entity/Player.h"
 #include "../ui/FpsCounter.h"
+#include "Collider.h"
 
 class Game {   
     //varibles
@@ -17,6 +18,7 @@ class Game {
         std::vector<Entity> entities;
         Player player;
         FpsCounter fpsCounter;
+        Collider col;
     public:
         InputHandler inputHandler;
     //functions

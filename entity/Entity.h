@@ -11,12 +11,14 @@ class Entity {
         Vector2 position;
         Vector2 size;
         Vector2 velocity;
+        Vector2 externalForce;
         SDL_Rect rect;
     // functions
     public:
         Entity();
         void update(float delta);
         void render(SDL_Renderer* r);
+        void applyForce(Vector2 force);
         // getters & setters
     public:
         Vector2 getPosition();

@@ -92,7 +92,7 @@ void Game::start(){
                   << SDL_GetError();
         stop();
     }
-    
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     initObjects();
 
     run();
@@ -138,7 +138,9 @@ void Game::run(){
 }
 
 void Game::initObjects(){
+    col = Collider(Vector2(128.f, 128.f), Vector2(64, 64));
     player.setInputHandler(&inputHandler);
+    player.other = &col;
 }
 
 void Game::pollEvents(){
@@ -171,6 +173,7 @@ void Game::render(){
     SDL_RenderClear(renderer);
 
     player.render(renderer);
+    col.render(renderer);
 
     for (Entity e : entities){
         e.render(renderer);
