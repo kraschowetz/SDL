@@ -9,11 +9,12 @@ void FpsCounter::render(SDL_Renderer* r, float delta){
     //set color
     SDL_Color c_white = {
         255, 255, 255, 255};
-        
+    SDL_Color c_black = {
+        0, 0, 0, 255};
     // create SDL_Surface from fps string
-    SDL_Surface *textSurface = TTF_RenderText_Blended(
-        font, std::string("fps " + 
-        std::to_string(1.f / delta)).c_str(), c_white);
+    SDL_Surface *textSurface = TTF_RenderText_Shaded(
+        font, std::string("fps " + std::to_string(1.f / delta)
+    ).c_str(), c_white, c_black);
     // create a texture from surface
     SDL_Texture *text_t = SDL_CreateTextureFromSurface(
         r, textSurface);

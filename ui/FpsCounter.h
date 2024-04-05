@@ -9,3 +9,10 @@ class FpsCounter{
     public:
         void render(SDL_Renderer* r, float delta);
 };
+
+/*
+    TODO:
+    learn a bit about bitmap fonts.
+    apparently bitmapfonts dont require surface & texture
+    clearing every frame
+*/

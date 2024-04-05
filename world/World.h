@@ -1,8 +1,8 @@
 #pragma once
 
 #include <vector>
+#include <SDL2/SDL_image.h>
 #include "../math/Vector2.h"
-#include "Chunk.h"
 
 
 /*
@@ -12,8 +12,10 @@
 class World{
     //variables
     private:
-        std::vector<std::vector<Chunk>> chunks;
-    //methods
+        SDL_Surface *image = IMG_Load("res/TestScene.png");
+        SDL_Texture *texture;
+        // methods
     public:
-        Chunk getChunk(Vector2 position);
+        void render(SDL_Renderer* r);
+        void initGraphics(SDL_Renderer* r);
 };

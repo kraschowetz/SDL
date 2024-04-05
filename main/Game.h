@@ -6,6 +6,7 @@
 #include "../entity/Entity.h"
 #include "../entity/Player.h"
 #include "../ui/FpsCounter.h"
+#include "../world/World.h"
 #include "Collider.h"
 
 class Game {   
@@ -16,6 +17,7 @@ class Game {
         bool running = true;
         float deltaTime;
         std::vector<Entity> entities;
+        World w;
         Player player;
         FpsCounter fpsCounter;
         Collider col;

@@ -138,6 +138,7 @@ void Game::run(){
 }
 
 void Game::initObjects(){
+    w.initGraphics(renderer);
     col = Collider(Vector2(128.f, 128.f), Vector2(64, 64));
     player.setInputHandler(&inputHandler);
     player.other = &col;
@@ -171,6 +172,8 @@ void Game::update(float delta){
 void Game::render(){
     // clear window
     SDL_RenderClear(renderer);
+
+    w.render(renderer);
 
     player.render(renderer);
     col.render(renderer);
