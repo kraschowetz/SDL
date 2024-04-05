@@ -1,24 +1,30 @@
 #pragma once
 
 #include <vector>
+#include <string>
+#include <iostream>
+#include <fstream>
 #include <SDL2/SDL_image.h>
 #include "../math/Vector2.h"
-
-
-/*
-    TODO:
-        -proper file loading
-        -world info file
-        -world loading / unloading
-*/
+#include "../main/Collider.h"
 
 class World{
     //variables
     private:
-        SDL_Surface *image = IMG_Load("res/TestScene.png");
-        SDL_Texture *texture;
-        // methods
+        //gpx
+        SDL_Renderer *renderer ;
+        SDL_Surface *image = nullptr;
+        SDL_Texture *texture = nullptr;
+        //physics
+        std::vector<Collider> collision;
+
+    // methods
     public:
-        void render(SDL_Renderer* r);
-        void initGraphics(SDL_Renderer* r);
+        void setRenderer(SDL_Renderer *r);
+        void render();
+        void loadWorld(std::string img_p, std::string data_p);
+        void interpretWorldDataLine(std::string l);
+        void initGraphics();
+        std::vector<Collider> getCollision();
+        std::vector<std::string> split(std::string in);
 };

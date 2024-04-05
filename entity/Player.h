@@ -5,6 +5,7 @@
 #include "Entity.h"
 #include "../main/InputHandler.h"
 #include "../main/Collider.h"
+#include "../world/World.h"
 
 class Player : public Entity{
     //functions
@@ -13,10 +14,11 @@ class Player : public Entity{
         void update(float delta);
         void render(SDL_Renderer* r);
         void move();
-        Collider* other = nullptr; //debug
+        World* world;
     //setters & getters
     public:
         void setInputHandler(InputHandler* in);
+        void setWorld(World* w);
     //variables
     private:
         float speed = 320; 

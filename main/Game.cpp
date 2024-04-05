@@ -53,7 +53,7 @@ void Game::start(){
 
     // crete SDL window;
     window = SDL_CreateWindow(
-        "SDL test",
+        "CIPÓ engine",
         SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
         800, 600,
         0);
@@ -138,10 +138,10 @@ void Game::run(){
 }
 
 void Game::initObjects(){
-    w.initGraphics(renderer);
-    col = Collider(Vector2(128.f, 128.f), Vector2(64, 64));
+    w.setRenderer(renderer);
+    w.loadWorld("res/maps/TestScene.png", "res/mapData/testMap.txt");
     player.setInputHandler(&inputHandler);
-    player.other = &col;
+    player.setWorld(&w);
 }
 
 void Game::pollEvents(){
@@ -173,10 +173,9 @@ void Game::render(){
     // clear window
     SDL_RenderClear(renderer);
 
-    w.render(renderer);
+    w.render();
 
     player.render(renderer);
-    col.render(renderer);
 
     for (Entity e : entities){
         e.render(renderer);

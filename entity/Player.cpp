@@ -11,6 +11,10 @@ Player::Player(){
     collider = c;
 }
 
+void Player::setWorld(World* w){
+    this->world = w;
+}
+
 void Player::setInputHandler(InputHandler* in){
     this->inputHandler = in;
 }
@@ -40,8 +44,11 @@ void Player::render(SDL_Renderer *r){
 void Player::move(){
     //detect collision
     dir = Vector2(0.f, 0.f);
-    if(collider.isColliding(other)){
-        return;
+    for(int i = 0; i < world->getCollision().size(); i++){
+        if (collider.isColliding(&world->getCollision().at(i)))
+        {
+            return;
+        }
     }
     /*
         read inputStorage;

@@ -5,7 +5,7 @@
 void FpsCounter::render(SDL_Renderer* r, float delta){
     //open font
     TTF_Font *font = TTF_OpenFont(
-        "assets/fonts/FiraCode.ttf", 12);
+        "res/fonts/FiraCode.ttf", 12);
     //set color
     SDL_Color c_white = {
         255, 255, 255, 255};

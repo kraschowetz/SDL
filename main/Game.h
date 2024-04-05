@@ -20,7 +20,6 @@ class Game {
         World w;
         Player player;
         FpsCounter fpsCounter;
-        Collider col;
     public:
         InputHandler inputHandler;
     //functions
