@@ -6,7 +6,10 @@
 
 
 /*
-    the world class loads and unloads chunks, tiles & entities
+    TODO:
+        -proper file loading
+        -world info file
+        -world loading / unloading
 */
 
 class World{
