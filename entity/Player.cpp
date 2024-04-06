@@ -35,8 +35,8 @@ void Player::update(float delta){
     position += velocity;
 
     //apply velocity in drawable rect
-    rect.x = position.x;
-    rect.y = position.y;
+    rect.x = position.x - world->getCamera().x;
+    rect.y = position.y - world->getCamera().y;
     collider.updatePosition(position);
     externalForce = Vector2(0.f, 0.f);
 
@@ -46,6 +46,11 @@ void Player::update(float delta){
             break;
         }
     }
+
+    world->setCameraPos(
+        collider.getCenter()
+    );
+    collider.setOffset(world->getCamera());
 }
 
 void Player::render(SDL_Renderer *r){

@@ -97,6 +97,14 @@ void World::setPlayer(Collider *p){
     this->player = p;
 }
 
+void World::setCameraPos(Vector2 pos){
+    camera = pos - Vector2(400, 300);
+}
+
+Vector2 World::getCamera(){
+    return camera;
+}
+
 void World::render(){
     if(texture == nullptr){
         texture = SDL_CreateTextureFromSurface(
@@ -104,7 +112,10 @@ void World::render(){
         );
     }   
     SDL_Rect bounds = {
-        (int)(offset.x /*- player->getCenter().x*/), (int)(offset.y /*- player->getCenter().y*/), image->w, image->h
+            (int)(offset.x - camera.x),
+            (int)(offset.y - camera.y),
+            image->w,
+            image->h
         };
     SDL_RenderCopy(
         renderer,
@@ -113,9 +124,11 @@ void World::render(){
         &bounds
     );
     for(Collider c : collision){
+        c.setOffset(camera);
         c.render(renderer);
     }
     for (Collider p : portals){
+        p.setOffset(camera);
         p.render(renderer);
         //std::cout << p.getCol().getShape()->w;
     }

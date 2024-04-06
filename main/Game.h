@@ -20,6 +20,7 @@ class Game {
         World w;
         Player player;
         FpsCounter fpsCounter;
+        
     public:
         InputHandler inputHandler;
     //functions

@@ -104,15 +104,27 @@ bool Collider::isColliding(Collider *other){
 
 //render method is used only for debugging
 void Collider::render(SDL_Renderer* r){
+    //set renderShape
+    SDL_Rect renderShape {
+        shape.x - offset.x,
+        shape.y - offset.y,
+        shape.w,
+        shape.h
+    };
+
     // draws the collider in a transparent blue shade
     SDL_SetRenderDrawColor(r, 123, 128, 255, 128);
-    SDL_RenderFillRect(r, &shape);
+    SDL_RenderFillRect(r, &renderShape);
     // draws the bounds of the collider
     SDL_SetRenderDrawColor(r, 64, 64, 255, 255);
-    SDL_RenderDrawRect(r, &shape);
+    SDL_RenderDrawRect(r, &renderShape);
     // draws the center point of the collider in red
     SDL_SetRenderDrawColor(r, 255, 0, 0, 255);
-    SDL_RenderDrawPoint(r, centerPosition.x, centerPosition.y);
+    SDL_RenderDrawPoint(
+        r,
+        centerPosition.x - offset.x,
+        centerPosition.y - offset.y
+    );
 }
 
 Vector2 Collider::getCenter(){
@@ -121,4 +133,8 @@ Vector2 Collider::getCenter(){
 
 SDL_Rect* Collider::getShape(){
     return &this->shape;
+}
+
+void Collider::setOffset(Vector2 of){
+    this->offset = of;
 }
