@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL2/SDL.h>
+#include <string>
 #include "../entity/Entity.h"
 #include "../math/Vector2.h"
 
@@ -14,11 +15,13 @@ class Collider{
         Vector2 centerPosition;
         Vector2 size;
         Entity* parent;
+        std::string data;
     //getters
     public:
         SDL_Rect* getShape();
         Vector2 getCenter();
-    //methods
+        void setData(std::string _d);
+    // methods
     public:
         Collider();
         Collider(Vector2 _pos);
@@ -27,6 +30,7 @@ class Collider{
         void updatePosition(Vector2 _pos);
         void setIsTrigger(bool _t);
         void setIsStatic(bool _s);
+        std::string getData();
         bool isColliding(Collider *other);
         void render(SDL_Renderer* r);
 };

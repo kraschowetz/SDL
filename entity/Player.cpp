@@ -3,6 +3,7 @@
 #include <iostream>
 
 Player::Player(){
+    position = Vector2(400, 300);
     Collider c = Collider(
         position,
         Vector2(32.f, 32.f),
@@ -13,10 +14,15 @@ Player::Player(){
 
 void Player::setWorld(World* w){
     this->world = w;
+    world->setPlayer(&collider);
 }
 
 void Player::setInputHandler(InputHandler* in){
     this->inputHandler = in;
+}
+
+Collider Player::getCol(){
+    return collider;
 }
 
 void Player::update(float delta){
@@ -33,6 +39,13 @@ void Player::update(float delta){
     rect.y = position.y;
     collider.updatePosition(position);
     externalForce = Vector2(0.f, 0.f);
+
+    for(int i = 0; i < world->getPortals().size(); i++){
+        if (collider.isColliding(&world->getPortals().at(i))){
+            world->interpretPortalPass(i);
+            break;
+        }
+    }
 }
 
 void Player::render(SDL_Renderer *r){

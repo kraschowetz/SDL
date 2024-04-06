@@ -74,12 +74,20 @@ void Collider::setIsStatic(bool _s){
     this->isStatic = _s;
 }
 
+void Collider::setData(std::string _d){
+    this->data = _d;
+}
+
+std::string Collider::getData(){
+    return this->data;
+}
+
 //coliision detection
 bool Collider::isColliding(Collider *other){
     //get collision via SDL_Rect HasIntersection()
     bool r = SDL_HasIntersection(
-        this->getShape(), other->getShape()
-    );
+            this->getShape(), other->getShape()
+        );
     /*
         if the collider that called the isColliding function
         is not static (i.e. is an entity) the calling collider

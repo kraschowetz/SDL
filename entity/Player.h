@@ -19,6 +19,7 @@ class Player : public Entity{
     public:
         void setInputHandler(InputHandler* in);
         void setWorld(World* w);
+        Collider getCol();
     //variables
     private:
         float speed = 320; 

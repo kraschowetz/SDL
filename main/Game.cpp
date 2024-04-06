@@ -8,7 +8,6 @@
 #include "../entity/Entity.h"
 
 void Game::start(){
-    std::cout << "starting game \n"; // DEBUG
     running = true;
 
     // initialization bug-check//
@@ -139,7 +138,7 @@ void Game::run(){
 
 void Game::initObjects(){
     w.setRenderer(renderer);
-    w.loadWorld("res/maps/TestScene.png", "res/mapData/testMap.txt");
+    w.loadWorld("res/maps/mapHalf1.png", "res/mapData/testMap.txt");
     player.setInputHandler(&inputHandler);
     player.setWorld(&w);
 }
